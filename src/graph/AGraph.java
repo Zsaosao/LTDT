@@ -16,4 +16,6 @@ public abstract class AGraph {
 
     public abstract boolean isConnected(int v1, int v2);
 
+    public abstract boolean isEulerian();
+
 }

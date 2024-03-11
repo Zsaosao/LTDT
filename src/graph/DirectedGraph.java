@@ -77,4 +77,14 @@ public class DirectedGraph extends AGraph {
         return visited[v2];
     }
 
+    @Override
+    public boolean isEulerian() {
+        for (int i = 0; i < this.adjMatrix.length; i++) {
+            if (this.degree(i) % 2 != 0) {
+                return false;
+            }
+        }
+        return true;
+    }
+
 }
