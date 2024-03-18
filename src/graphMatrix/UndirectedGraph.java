@@ -1,9 +1,15 @@
-package graph;
+package graphMatrix;
 
 import java.util.LinkedList;
+import java.util.List;
 import java.util.Queue;
 
 public class UndirectedGraph extends AGraph {
+
+    public UndirectedGraph(int n) {
+        super(n);
+        // TODO Auto-generated constructor stub
+    }
 
     @Override
     public void addEdge(int v1, int v2) {
@@ -39,7 +45,7 @@ public class UndirectedGraph extends AGraph {
         for (int i = 0; i < this.adjMatrix.length; i++) {
             edges += this.degree(i);
         }
-        return edges / 2;
+        return edges;
     }
 
     @Override
@@ -85,12 +91,87 @@ public class UndirectedGraph extends AGraph {
 
     @Override
     public boolean isEulerian() {
+        if (!this.isConnected()) {
+            return false;
+        }
         for (int i = 0; i < this.adjMatrix.length; i++) {
             if (this.degree(i) % 2 != 0) {
                 return false;
             }
         }
-        return this.isConnected();
+        return true;
+
+    }
+
+    @Override
+    public boolean isBipartite() {
+        int[] color = new int[this.adjMatrix.length];
+        for (int i = 0; i < color.length; i++) {
+            color[i] = -1;
+        }
+        Queue<Integer> queue = new LinkedList<>();
+        queue.add(0);
+        color[0] = 1;
+        while (!queue.isEmpty()) {
+            int v = queue.poll();
+            for (int i = 0; i < this.adjMatrix.length; i++) {
+                if (this.adjMatrix[v][i] == 1 && color[i] == -1) {
+                    color[i] = 1 - color[v];
+                    queue.add(i);
+                } else if (this.adjMatrix[v][i] == 1 && color[i] == color[v]) {
+                    return false;
+                }
+            }
+        }
+        return true;
+    }
+
+    @Override
+    public boolean isHalfEulerian() {
+        int odd = 0;
+        for (int i = 0; i < this.adjMatrix.length; i++) {
+            if (this.degree(i) % 2 != 0) {
+                odd++;
+            }
+        }
+        return odd == 2;
+
+    }
+
+    @Override
+    public List<Integer> eulerian() {
+        if (!this.isEulerian() && !this.isHalfEulerian()) {
+            return null;
+        }
+        List<Integer> path = new LinkedList<>();
+        int v = 0;
+        for (int i = 0; i < this.adjMatrix.length; i++) {
+            if (this.degree(i) % 2 != 0) {
+                v = i;
+                break;
+            }
+        }
+        int[][] temp = new int[this.adjMatrix.length][this.adjMatrix.length];
+        for (int i = 0; i < this.adjMatrix.length; i++) {
+            for (int j = 0; j < this.adjMatrix.length; j++) {
+                temp[i][j] = this.adjMatrix[i][j];
+            }
+        }
+        while (this.edges() > 0) {
+            int i;
+            for (i = 0; i < this.adjMatrix.length; i++) {
+                if (this.adjMatrix[v][i] == 1) {
+                    break;
+                }
+            }
+            this.removeEdge(v, i);
+            path.add(v);
+            v = i;
+        }
+        path.add(v);
+        this.adjMatrix = temp;
+        return path;
+
     }
 
 }
