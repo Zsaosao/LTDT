@@ -17,22 +17,28 @@ public class Test {
         // System.out.println("Is bipartite: " + directedGraph.isBipartite());
         // System.out.println("Eulerian path: " + directedGraph.eulerian());
 
-        UndirectedGraph undirectedGraph = new UndirectedGraph(5);
-        undirectedGraph.addEdge(0, 1);
-        undirectedGraph.addEdge(1, 2);
-        undirectedGraph.addEdge(2, 3);
-        undirectedGraph.addEdge(3, 0);
-        undirectedGraph.addEdge(0, 4);
+        // UndirectedGraph undirectedGraph = new UndirectedGraph(5);
+        // undirectedGraph.addEdge(0, 1);
+        // undirectedGraph.addEdge(1, 2);
+        // undirectedGraph.addEdge(2, 3);
+        // undirectedGraph.addEdge(3, 0);
+        // undirectedGraph.addEdge(0, 4);
 
-        undirectedGraph.printGraph();
-        System.out.println("Is connected: " + undirectedGraph.isConnected());
-        System.out.println("Degree of 1: " + undirectedGraph.degree(1));
-        System.out.println("Edges: " + undirectedGraph.edges());
-        System.out.println("Is Connected: " + undirectedGraph.isConnected());
-        System.out.println("Is Eulerian: " + undirectedGraph.isEulerian());
-        System.out.println("Is half Eulerian: " + undirectedGraph.isHalfEulerian());
-        System.out.println("Is bipartite: " + undirectedGraph.isBipartite());
-        System.out.println("Eulerian path: " + undirectedGraph.eulerian());
+        // undirectedGraph.printGraph();
+        // System.out.println("Is connected: " + undirectedGraph.isConnected());
+        // System.out.println("Degree of 1: " + undirectedGraph.degree(1));
+        // System.out.println("Edges: " + undirectedGraph.edges());
+        // System.out.println("Is Connected: " + undirectedGraph.isConnected());
+        // System.out.println("Is Eulerian: " + undirectedGraph.isEulerian());
+        // System.out.println("Is half Eulerian: " + undirectedGraph.isHalfEulerian());
+        // System.out.println("Is bipartite: " + undirectedGraph.isBipartite());
+        // System.out.println("Eulerian path: " + undirectedGraph.eulerian());
+
+        DirectedGraph directedGraph = new DirectedGraph(3);
+        directedGraph.loadData();
+        directedGraph.printGraph();
+
+        System.out.println(directedGraph.degree(0));
 
     }
 }

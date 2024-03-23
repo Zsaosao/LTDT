@@ -1,5 +1,8 @@
 package graphMatrix;
 
+import java.io.BufferedReader;
+import java.io.FileReader;
+import java.io.IOException;
 import java.util.List;
 
 public abstract class AGraph {
@@ -37,6 +40,31 @@ public abstract class AGraph {
             }
             System.out.println();
         }
+    }
+
+    public void loadData() {
+        try {
+            BufferedReader bf = new BufferedReader(new FileReader("src\\data.txt"));
+            String line = bf.readLine();
+            int i = 0;
+            while (line != null) {
+                String[] data = line.split(" ");
+
+                for (int j = 0; j < data.length; j++) {
+                    if (Integer.parseInt(data[j]) > 0) {
+                        this.adjMatrix[i][j] = Integer.parseInt(data[j]);
+                    }
+                }
+                i++;
+
+                line = bf.readLine();
+            }
+            bf.close();
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
     }
 
 }

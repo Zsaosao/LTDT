@@ -25,14 +25,7 @@ public class DirectedGraph extends AGraph {
 
     @Override
     public int degree(int v) {
-        int degree = 0;
-        for (int i = 0; i < this.adjMatrix.length; i++) {
-            degree += this.adjMatrix[v][i];
-            if (v == i) {
-                degree += this.adjMatrix[i][v] * 2;
-            }
-        }
-        return degree;
+        return inDegree(v) + outDegree(v);
     }
 
     @Override
