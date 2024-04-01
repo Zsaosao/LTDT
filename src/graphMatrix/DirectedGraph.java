@@ -85,24 +85,6 @@ public class DirectedGraph extends AGraph {
         return true;
     }
 
-    @Override
-    public boolean isConnected(int v1, int v2) {
-        Queue<Integer> queue = new LinkedList<>();
-        boolean[] visited = new boolean[this.adjMatrix.length];
-        queue.add(v1);
-        visited[v1] = true;
-        while (!queue.isEmpty()) {
-            int v = queue.poll();
-            for (int i = 0; i < this.adjMatrix.length; i++) {
-                if (this.adjMatrix[v][i] > 0 && !visited[i]) {
-                    queue.add(i);
-                    visited[i] = true;
-                }
-            }
-        }
-        return visited[v2];
-    }
-
     public boolean isConnectedStrong() {
         if (!isConnectedWeak()) {
             return false;
@@ -120,7 +102,7 @@ public class DirectedGraph extends AGraph {
 
     @Override
     public boolean isEulerian() {
-        if (!this.isConnected()) {
+        if (!this.isConnectedWeak()) {
             return false;
         }
         for (int i = 0; i < this.adjMatrix.length; i++) {
@@ -174,7 +156,7 @@ public class DirectedGraph extends AGraph {
 
     @Override
     public boolean isHalfEulerian() {
-        if (!this.isConnected()) {
+        if (!this.isConnectedWeak()) {
             return false;
         }
         int in = 0;
@@ -259,6 +241,24 @@ public class DirectedGraph extends AGraph {
             }
         }
         return true;
+    }
+
+    @Override
+    public boolean isConnected(int v1, int v2) {
+        Queue<Integer> queue = new LinkedList<>();
+        boolean[] visited = new boolean[this.adjMatrix.length];
+        queue.add(v1);
+        visited[v1] = true;
+        while (!queue.isEmpty()) {
+            int v = queue.poll();
+            for (int i = 0; i < this.adjMatrix.length; i++) {
+                if (this.adjMatrix[v][i] > 0 && !visited[i]) {
+                    queue.add(i);
+                    visited[i] = true;
+                }
+            }
+        }
+        return visited[v2];
     }
 
 }
