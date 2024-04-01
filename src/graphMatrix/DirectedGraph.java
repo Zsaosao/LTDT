@@ -159,7 +159,7 @@ public class DirectedGraph extends AGraph {
         while (!queue.isEmpty()) {
             int v = queue.poll();
             for (int i = 0; i < this.adjMatrix.length; i++) {
-                if (this.adjMatrix[v][i] == 1) {
+                if (this.adjMatrix[v][i] > 0) {
                     if (color[i] == -1) {
                         color[i] = 1 - color[v];
                         queue.add(i);
@@ -174,6 +174,9 @@ public class DirectedGraph extends AGraph {
 
     @Override
     public boolean isHalfEulerian() {
+        if (!this.isConnected()) {
+            return false;
+        }
         int in = 0;
         int out = 0;
         for (int i = 0; i < this.adjMatrix.length; i++) {
@@ -214,7 +217,7 @@ public class DirectedGraph extends AGraph {
             v = stack.peek();
             int i;
             for (i = 0; i < this.adjMatrix.length; i++) {
-                if (this.adjMatrix[v][i] == 1) {
+                if (this.adjMatrix[v][i] > 0) {
                     break;
                 }
             }
@@ -237,8 +240,25 @@ public class DirectedGraph extends AGraph {
 
     @Override
     public boolean isConnected() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'isConnected'");
+        Queue<Integer> queue = new LinkedList<>();
+        boolean[] visited = new boolean[this.adjMatrix.length];
+        queue.add(0);
+        visited[0] = true;
+        while (!queue.isEmpty()) {
+            int v = queue.poll();
+            for (int i = 0; i < this.adjMatrix.length; i++) {
+                if (this.adjMatrix[v][i] > 0 && !visited[i]) {
+                    queue.add(i);
+                    visited[i] = true;
+                }
+            }
+        }
+        for (int i = 0; i < visited.length; i++) {
+            if (!visited[i]) {
+                return false;
+            }
+        }
+        return true;
     }
 
 }

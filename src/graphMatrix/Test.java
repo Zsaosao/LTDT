@@ -6,8 +6,10 @@ public class Test {
         DirectedGraph aGraph = new DirectedGraph("src//data.txt");
         aGraph.printGraph();
 
-        System.out.println(aGraph.isConnectedStrong());
-        System.out.println(aGraph.isConnectedWeak());
+        // System.out.println(aGraph.isConnectedStrong());
+        // System.out.println(aGraph.isConnectedWeak());
+        System.out.println(aGraph.isConnected());
+        System.out.println(aGraph.isEulerian());
 
     }
 

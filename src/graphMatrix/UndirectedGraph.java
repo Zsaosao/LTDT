@@ -8,12 +8,10 @@ public class UndirectedGraph extends AGraph {
 
     public UndirectedGraph(int n) {
         super(n);
-        // TODO Auto-generated constructor stub
     }
 
     public UndirectedGraph(String path) {
         super(path);
-        // TODO Auto-generated constructor stub
     }
 
     @Override
@@ -63,7 +61,7 @@ public class UndirectedGraph extends AGraph {
         while (!queue.isEmpty()) {
             int v = queue.poll();
             for (int i = 0; i < this.adjMatrix.length; i++) {
-                if (this.adjMatrix[v][i] == 1 && !visited[i]) {
+                if (this.adjMatrix[v][i] > 0 && !visited[i]) {
                     queue.add(i);
                     visited[i] = true;
                 }
@@ -86,7 +84,7 @@ public class UndirectedGraph extends AGraph {
         while (!queue.isEmpty()) {
             int v = queue.poll();
             for (int i = 0; i < this.adjMatrix.length; i++) {
-                if (this.adjMatrix[v][i] == 1 && !visited[i]) {
+                if (this.adjMatrix[v][i] > 0 && !visited[i]) {
                     queue.add(i);
                     visited[i] = true;
                 }
@@ -121,10 +119,10 @@ public class UndirectedGraph extends AGraph {
         while (!queue.isEmpty()) {
             int v = queue.poll();
             for (int i = 0; i < this.adjMatrix.length; i++) {
-                if (this.adjMatrix[v][i] == 1 && color[i] == -1) {
+                if (this.adjMatrix[v][i] > 0 && color[i] == -1) {
                     color[i] = 1 - color[v];
                     queue.add(i);
-                } else if (this.adjMatrix[v][i] == 1 && color[i] == color[v]) {
+                } else if (this.adjMatrix[v][i] > 0 && color[i] == color[v]) {
                     return false;
                 }
             }
@@ -134,6 +132,9 @@ public class UndirectedGraph extends AGraph {
 
     @Override
     public boolean isHalfEulerian() {
+        if (!this.isConnected()) {
+            return false;
+        }
         int odd = 0;
         for (int i = 0; i < this.adjMatrix.length; i++) {
             if (this.degree(i) % 2 != 0) {
@@ -166,7 +167,7 @@ public class UndirectedGraph extends AGraph {
         while (this.edges() > 0) {
             int i;
             for (i = 0; i < this.adjMatrix.length; i++) {
-                if (this.adjMatrix[v][i] == 1) {
+                if (this.adjMatrix[v][i] > 0) {
                     break;
                 }
             }
