@@ -11,6 +11,11 @@ public class UndirectedGraph extends AGraph {
         // TODO Auto-generated constructor stub
     }
 
+    public UndirectedGraph(String path) {
+        super(path);
+        // TODO Auto-generated constructor stub
+    }
+
     @Override
     public void addEdge(int v1, int v2) {
         this.adjMatrix[v1][v2] = 1;
@@ -33,7 +38,7 @@ public class UndirectedGraph extends AGraph {
         for (int i = 0; i < this.adjMatrix.length; i++) {
             degree += this.adjMatrix[v][i];
             if (v == i) {
-                degree += this.adjMatrix[i][v] * 2;
+                degree += this.adjMatrix[i][v];
             }
         }
         return degree;
@@ -45,13 +50,14 @@ public class UndirectedGraph extends AGraph {
         for (int i = 0; i < this.adjMatrix.length; i++) {
             edges += this.degree(i);
         }
-        return edges;
+        return edges / 2;
     }
 
     @Override
     public boolean isConnected() {
         Queue<Integer> queue = new LinkedList<>();
         boolean[] visited = new boolean[this.adjMatrix.length];
+
         queue.add(0);
         visited[0] = true;
         while (!queue.isEmpty()) {

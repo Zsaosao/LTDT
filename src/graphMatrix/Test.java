@@ -2,6 +2,16 @@ package graphMatrix;
 
 public class Test {
     public static void main(String[] args) {
+
+        DirectedGraph aGraph = new DirectedGraph("src//data.txt");
+        aGraph.printGraph();
+
+        System.out.println(aGraph.isConnectedStrong());
+        System.out.println(aGraph.isConnectedWeak());
+
+    }
+
+    public void test2() {
         // DirectedGraph directedGraph = new DirectedGraph(4);
         // directedGraph.addEdge(0, 1);
         // directedGraph.addEdge(1, 2);
@@ -33,12 +43,5 @@ public class Test {
         // System.out.println("Is half Eulerian: " + undirectedGraph.isHalfEulerian());
         // System.out.println("Is bipartite: " + undirectedGraph.isBipartite());
         // System.out.println("Eulerian path: " + undirectedGraph.eulerian());
-
-        DirectedGraph directedGraph = new DirectedGraph(3);
-        directedGraph.loadData();
-        directedGraph.printGraph();
-
-        System.out.println(directedGraph.degree(0));
-
     }
 }

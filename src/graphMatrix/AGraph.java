@@ -13,6 +13,10 @@ public abstract class AGraph {
         this.adjMatrix = new int[n][n];
     }
 
+    public AGraph(String path) {
+        this.loadData(path);
+    }
+
     public abstract void addEdge(int v1, int v2);
 
     public abstract void removeEdge(int v1, int v2);
@@ -42,11 +46,15 @@ public abstract class AGraph {
         }
     }
 
-    public void loadData() {
+    public void loadData(String path) {
         try {
-            BufferedReader bf = new BufferedReader(new FileReader("src\\data.txt"));
+            // BufferedReader bf = new BufferedReader(new FileReader("src\\data.txt"));
+            BufferedReader bf = new BufferedReader(new FileReader(path));
             String line = bf.readLine();
+            int len = Integer.parseInt(line);
+            this.adjMatrix = new int[len][len];
             int i = 0;
+            line = bf.readLine();
             while (line != null) {
                 String[] data = line.split(" ");
 

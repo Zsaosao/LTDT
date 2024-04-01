@@ -13,6 +13,11 @@ public class DirectedGraph extends AGraph {
 
     }
 
+    public DirectedGraph(String path) {
+        super(path);
+
+    }
+
     @Override
     public void addEdge(int v1, int v2) {
         this.adjMatrix[v1][v2] = 1;
@@ -37,16 +42,36 @@ public class DirectedGraph extends AGraph {
         return edges / 2;
     }
 
-    @Override
-    public boolean isConnected() {
+    public int[][] diagonalSymmetry() {
+        int tempDiagonalSymmetry[][] = new int[this.adjMatrix.length][this.adjMatrix.length];
+        for (int i = 0; i < this.adjMatrix.length; i++) {
+            for (int j = 0; j < this.adjMatrix.length; j++) {
+                tempDiagonalSymmetry[i][j] = this.adjMatrix[i][j];
+
+            }
+        }
+        for (int i = 0; i < this.adjMatrix.length; i++) {
+            for (int j = 0; j <= i; j++) {
+                if (tempDiagonalSymmetry[i][j] > 0) {
+                    tempDiagonalSymmetry[j][i] = tempDiagonalSymmetry[i][j];
+                } else if (tempDiagonalSymmetry[j][i] > 0) {
+                    tempDiagonalSymmetry[i][j] = tempDiagonalSymmetry[j][i];
+                }
+            }
+        }
+        return tempDiagonalSymmetry;
+    }
+
+    public boolean isConnectedWeak() {
         Queue<Integer> queue = new LinkedList<>();
         boolean[] visited = new boolean[this.adjMatrix.length];
         queue.add(0);
         visited[0] = true;
+        int diagonalSymmetry[][] = diagonalSymmetry();
         while (!queue.isEmpty()) {
             int v = queue.poll();
-            for (int i = 0; i < this.adjMatrix.length; i++) {
-                if (this.adjMatrix[v][i] == 1 && !visited[i]) {
+            for (int i = 0; i < diagonalSymmetry.length; i++) {
+                if (diagonalSymmetry[v][i] > 0 && !visited[i]) {
                     queue.add(i);
                     visited[i] = true;
                 }
@@ -69,13 +94,28 @@ public class DirectedGraph extends AGraph {
         while (!queue.isEmpty()) {
             int v = queue.poll();
             for (int i = 0; i < this.adjMatrix.length; i++) {
-                if (this.adjMatrix[v][i] == 1 && !visited[i]) {
+                if (this.adjMatrix[v][i] > 0 && !visited[i]) {
                     queue.add(i);
                     visited[i] = true;
                 }
             }
         }
         return visited[v2];
+    }
+
+    public boolean isConnectedStrong() {
+        if (!isConnectedWeak()) {
+            return false;
+        }
+        for (int i = 0; i < this.adjMatrix.length; i++) {
+            for (int j = 0; j < this.adjMatrix.length; j++) {
+                if (!isConnected(i, j)) {
+                    return false;
+                }
+            }
+        }
+        return true;
+
     }
 
     @Override
@@ -193,6 +233,12 @@ public class DirectedGraph extends AGraph {
         }
         Collections.reverse(path);
         return path;
+    }
+
+    @Override
+    public boolean isConnected() {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'isConnected'");
     }
 
 }
