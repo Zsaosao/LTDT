@@ -69,8 +69,8 @@ public abstract class AGraph {
             }
             bf.close();
 
-        } catch (IOException e) {
-            e.printStackTrace();
+        }  catch (IOException e) {
+               e.printStackTrace();
         }
 
     }

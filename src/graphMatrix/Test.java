@@ -9,11 +9,12 @@ public class Test {
         // System.out.println(aGraph.isConnectedStrong());
         // System.out.println(aGraph.isConnectedWeak());
         // System.out.println(aGraph.isConnected());
-        System.out.println(aGraph.isEulerian());
-        System.out.println(aGraph.isHalfEulerian());
-        for (int i = 0; i < aGraph.eulerian().size(); i++) {
-            System.out.print(aGraph.eulerian().get(i) + " ");
-        }
+        System.out.println(aGraph.euler2());
+        // System.out.println(aGraph.isEulerian());
+        // System.out.println(aGraph.isHalfEulerian());
+        // for (int i = 0; i < aGraph.eulerian().size(); i++) {
+        // System.out.print(aGraph.eulerian().get(i) + " ");
+        // }
 
     }
 

@@ -1,8 +1,11 @@
 package graphMatrix;
 
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Queue;
+import java.util.Stack;
 
 public class UndirectedGraph extends AGraph {
 
@@ -164,21 +167,110 @@ public class UndirectedGraph extends AGraph {
                 temp[i][j] = this.adjMatrix[i][j];
             }
         }
-        while (this.edges() > 0) {
+        Stack<Integer> stack = new Stack<>();
+        stack.push(v);
+        while (!stack.isEmpty()) {
+            v = stack.peek();
             int i;
             for (i = 0; i < this.adjMatrix.length; i++) {
                 if (this.adjMatrix[v][i] > 0) {
                     break;
                 }
             }
-            this.removeEdge(v, i);
-            path.add(v);
-            v = i;
+            if (i == this.adjMatrix.length) {
+                path.add(v);
+                stack.pop();
+            } else {
+                stack.push(i);
+                this.adjMatrix[v][i] = 0;
+            }
         }
-        path.add(v);
-        this.adjMatrix = temp;
+        for (int i = 0; i < this.adjMatrix.length; i++) {
+            for (int j = 0; j < this.adjMatrix.length; j++) {
+                this.adjMatrix[i][j] = temp[i][j];
+            }
+        }
+        Collections.reverse(path);
         return path;
 
+    }
+
+    public List<Integer> euler2() {
+        List<Integer> path = new ArrayList<Integer>();
+        path.add(0);
+        int[][] temp = new int[this.adjMatrix.length][this.adjMatrix.length];
+        for (int i = 0; i < this.adjMatrix.length; i++) {
+            for (int j = 0; j < this.adjMatrix.length; j++) {
+                temp[i][j] = this.adjMatrix[i][j];
+            }
+        }
+        UndirectedGraph undirectedGraph = new UndirectedGraph(this.adjMatrix.length);
+        undirectedGraph.adjMatrix = temp;
+        int i;
+
+        while (undirectedGraph.edges() > 0) {
+            for (i = 0; i < path.size(); i++) {
+                if (undirectedGraph.degree(path.get(i)) > 0) {
+                    break;
+                }
+            }
+            List<Integer> sub = new ArrayList<Integer>();
+            Integer k = i;
+            i = path.get(i);
+            while (undirectedGraph.degree(i) > 0) {
+                sub.add(i);
+                for (int j = 0; j < undirectedGraph.adjMatrix.length; j++) {
+                    if (undirectedGraph.adjMatrix[i][j] > 0) {
+                        undirectedGraph.removeEdge(i, j);
+                        i = j;
+                        break;
+                    }
+                }
+            }
+            int index = path.indexOf(k);
+            path.addAll(index, sub);
+        }
+
+        return path;
+
+    }
+
+    public List<Integer> HalfEulerian2() {
+        if (!this.isHalfEulerian()) {
+            return null;
+        }
+        int[][] temp = new int[this.adjMatrix.length][this.adjMatrix.length];
+        for (int i = 0; i < this.adjMatrix.length; i++) {
+            for (int j = 0; j < this.adjMatrix.length; j++) {
+                temp[i][j] = this.adjMatrix[i][j];
+            }
+        }
+        UndirectedGraph undirectedGraph = new UndirectedGraph(this.adjMatrix.length);
+        undirectedGraph.adjMatrix = temp;
+        List<Integer> add = new ArrayList<Integer>();
+        for (int i = 0; i < undirectedGraph.adjMatrix.length; i++) {
+            if (undirectedGraph.degree(i) % 2 == 1) {
+                add.add(i);
+            }
+        }
+        undirectedGraph.addEdge(add.get(0), add.get(1));
+        List<Integer> path = undirectedGraph.euler2();
+        for (int i = 0; i < path.size(); i++) {
+            // System.out.println(path.get(i) + "" + path.get(i+1) + " " + add.get(0) + "" +
+            // add.get(1));
+            if (path.get(i) == add.get(0) && path.get(i + 1) == add.get(1)) {
+                List<Integer> path1 = path.subList(0, i);
+                List<Integer> path2 = path.subList(i, path.size() - 2);
+                Collections.reverse(path1);
+                Collections.reverse(path2);
+                System.out.println("" + path2);
+                // path.clear();
+                // path.addAll(0, path1);
+                // path.addAll(path.size()-1,path2);
+
+            }
+        }
+        return path;
     }
 
 }

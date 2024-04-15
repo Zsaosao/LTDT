@@ -1,0 +1,11 @@
+sv1 TCC
+sv1 TRR
+sv2 SXTK
+sv2 TCC
+sv2 TRR
+sv2 TTHCM
+sv3 TCC
+sv3 TRR
+sv3 LTCB
+sv4 LOL
+sv4 SXTK

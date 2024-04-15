@@ -1,0 +1,85 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "D:\\LearnUniversity\\LTDT\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|D:\\LearnUniversity\\LTDT\\src\\graphMatrix\\AGraph.java||{3B902123-F8A7-4915-9F01-361F908088D0}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:src\\graphMatrix\\AGraph.java||{3B902123-F8A7-4915-9F01-361F908088D0}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|D:\\LearnUniversity\\LTDT\\src\\graphMatrix\\DirectedGraph.java||{3B902123-F8A7-4915-9F01-361F908088D0}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:src\\graphMatrix\\DirectedGraph.java||{3B902123-F8A7-4915-9F01-361F908088D0}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|D:\\LearnUniversity\\LTDT\\src\\graphMatrix\\Test.java||{3B902123-F8A7-4915-9F01-361F908088D0}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:src\\graphMatrix\\Test.java||{3B902123-F8A7-4915-9F01-361F908088D0}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|D:\\LearnUniversity\\LTDT\\src\\data2.txt||{8B382828-6202-11D1-8870-0000F87579D2}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:src\\data2.txt||{8B382828-6202-11D1-8870-0000F87579D2}"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 0,
+          "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "AGraph.java",
+              "DocumentMoniker": "D:\\LearnUniversity\\LTDT\\src\\graphMatrix\\AGraph.java",
+              "RelativeDocumentMoniker": "src\\graphMatrix\\AGraph.java",
+              "ToolTip": "D:\\LearnUniversity\\LTDT\\src\\graphMatrix\\AGraph.java",
+              "RelativeToolTip": "src\\graphMatrix\\AGraph.java",
+              "ViewState": "AQIAADMAAAAAAAAAAAAAAEgAAAAOAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001001|",
+              "WhenOpened": "2024-04-10T17:57:08.594Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "DirectedGraph.java",
+              "DocumentMoniker": "D:\\LearnUniversity\\LTDT\\src\\graphMatrix\\DirectedGraph.java",
+              "RelativeDocumentMoniker": "src\\graphMatrix\\DirectedGraph.java",
+              "ToolTip": "D:\\LearnUniversity\\LTDT\\src\\graphMatrix\\DirectedGraph.java",
+              "RelativeToolTip": "src\\graphMatrix\\DirectedGraph.java",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001001|",
+              "WhenOpened": "2024-04-10T17:57:07.592Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "Test.java",
+              "DocumentMoniker": "D:\\LearnUniversity\\LTDT\\src\\graphMatrix\\Test.java",
+              "RelativeDocumentMoniker": "src\\graphMatrix\\Test.java",
+              "ToolTip": "D:\\LearnUniversity\\LTDT\\src\\graphMatrix\\Test.java",
+              "RelativeToolTip": "src\\graphMatrix\\Test.java",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001001|",
+              "WhenOpened": "2024-04-10T17:57:05.107Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "data2.txt",
+              "DocumentMoniker": "D:\\LearnUniversity\\LTDT\\src\\data2.txt",
+              "RelativeDocumentMoniker": "src\\data2.txt",
+              "ToolTip": "D:\\LearnUniversity\\LTDT\\src\\data2.txt",
+              "RelativeToolTip": "src\\data2.txt",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003109|",
+              "WhenOpened": "2024-04-10T17:57:01.223Z"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

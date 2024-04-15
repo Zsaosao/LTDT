@@ -1,5 +1,6 @@
 package graphMatrix;
 
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.LinkedList;
 import java.util.List;
@@ -259,6 +260,44 @@ public class DirectedGraph extends AGraph {
             }
         }
         return visited[v2];
+    }
+
+    public List<Integer> euler2() {
+        List<Integer> path = new ArrayList<Integer>();
+        path.add(0);
+        int[][] temp = new int[this.adjMatrix.length][this.adjMatrix.length];
+        for (int i = 0; i < this.adjMatrix.length; i++) {
+            for (int j = 0; j < this.adjMatrix.length; j++) {
+                temp[i][j] = this.adjMatrix[i][j];
+            }
+        }
+        DirectedGraph undirectedGraph = new DirectedGraph(this.adjMatrix.length);
+        undirectedGraph.adjMatrix = temp;
+        int i;
+
+        while (undirectedGraph.edges() > 0) {
+            for (i = 0; i < path.size(); i++) {
+                if (undirectedGraph.degree(path.get(i)) > 0) {
+                    break;
+                }
+            }
+            List<Integer> sub = new ArrayList<Integer>();
+            Integer k = i;
+            i = path.get(i);
+            while (undirectedGraph.degree(i) > 0) {
+                sub.add(i);
+                for (int j = 0; j < undirectedGraph.adjMatrix.length; j++) {
+                    if (undirectedGraph.adjMatrix[i][j] > 0) {
+                        undirectedGraph.removeEdge(i, j);
+                        i = j;
+                        break;
+                    }
+                }
+            }
+            int index = path.indexOf(k);
+            path.addAll(index, sub);
+        }
+        return path;
     }
 
 }
