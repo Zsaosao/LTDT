@@ -21,12 +21,12 @@ public class DirectedGraph extends AGraph {
 
     @Override
     public void addEdge(int v1, int v2) {
-        this.adjMatrix[v1][v2] = 1;
+        this.adjMatrix[v1][v2]++;
     }
 
     @Override
     public void removeEdge(int v1, int v2) {
-        this.adjMatrix[v1][v2] = 0;
+        this.adjMatrix[v1][v2]--;
     }
 
     @Override
@@ -298,6 +298,43 @@ public class DirectedGraph extends AGraph {
             path.addAll(index, sub);
         }
         return path;
+    }
+
+    public List<Integer> HalfEulerian2() {
+        if (!this.isHalfEulerian()) {
+            return null;
+        }
+        int[][] temp = new int[this.adjMatrix.length][this.adjMatrix.length];
+        for (int i = 0; i < this.adjMatrix.length; i++) {
+            for (int j = 0; j < this.adjMatrix.length; j++) {
+                temp[i][j] = this.adjMatrix[i][j];
+            }
+        }
+        DirectedGraph directedGraph = new DirectedGraph(this.adjMatrix.length);
+        directedGraph.adjMatrix = temp;
+        List<Integer> add = new ArrayList<Integer>();
+        for (int i = 0; i < directedGraph.adjMatrix.length; i++) {
+            if (directedGraph.degree(i) % 2 == 1) {
+                add.add(i);
+            }
+        }
+
+        directedGraph.addEdge(add.get(0), add.get(1));
+        List<Integer> path = directedGraph.euler2();
+        List<Integer> pathResult = new ArrayList<Integer>();
+
+        for (int i = 0; i < path.size(); i++) {
+            if ((path.get(i) == add.get(0) && path.get(i + 1) == add.get(1))
+                    || (path.get(i) == add.get(1) && path.get(i + 1) == add.get(0))) {
+                List<Integer> path1 = path.subList(1, i);
+                List<Integer> path2 = path.subList(i, path.size());
+                pathResult.addAll(0, path2);
+                pathResult.addAll(path2.size(), path1);
+                break;
+
+            }
+        }
+        return pathResult;
     }
 
 }

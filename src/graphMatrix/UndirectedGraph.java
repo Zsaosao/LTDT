@@ -19,17 +19,17 @@ public class UndirectedGraph extends AGraph {
 
     @Override
     public void addEdge(int v1, int v2) {
-        this.adjMatrix[v1][v2] = 1;
+        this.adjMatrix[v1][v2]++;
         if (v1 != v2) {
-            this.adjMatrix[v2][v1] = 1;
+            this.adjMatrix[v2][v1]++;
         }
     }
 
     @Override
     public void removeEdge(int v1, int v2) {
-        this.adjMatrix[v1][v2] = 0;
+        this.adjMatrix[v1][v2]--;
         if (v1 != v2) {
-            this.adjMatrix[v2][v1] = 0;
+            this.adjMatrix[v2][v1]--;
         }
     }
 
@@ -215,7 +215,6 @@ public class UndirectedGraph extends AGraph {
                 }
             }
             List<Integer> sub = new ArrayList<Integer>();
-            Integer k = i;
             i = path.get(i);
             while (undirectedGraph.degree(i) > 0) {
                 sub.add(i);
@@ -227,7 +226,7 @@ public class UndirectedGraph extends AGraph {
                     }
                 }
             }
-            int index = path.indexOf(k);
+            int index = path.indexOf(i);
             path.addAll(index, sub);
         }
 
@@ -253,24 +252,23 @@ public class UndirectedGraph extends AGraph {
                 add.add(i);
             }
         }
+
         undirectedGraph.addEdge(add.get(0), add.get(1));
         List<Integer> path = undirectedGraph.euler2();
+        List<Integer> pathResult = new ArrayList<Integer>();
+
         for (int i = 0; i < path.size(); i++) {
-            // System.out.println(path.get(i) + "" + path.get(i+1) + " " + add.get(0) + "" +
-            // add.get(1));
-            if (path.get(i) == add.get(0) && path.get(i + 1) == add.get(1)) {
-                List<Integer> path1 = path.subList(0, i);
-                List<Integer> path2 = path.subList(i, path.size() - 2);
-                Collections.reverse(path1);
-                Collections.reverse(path2);
-                System.out.println("" + path2);
-                // path.clear();
-                // path.addAll(0, path1);
-                // path.addAll(path.size()-1,path2);
+            if ((path.get(i) == add.get(0) && path.get(i + 1) == add.get(1))
+                    || (path.get(i) == add.get(1) && path.get(i + 1) == add.get(0))) {
+                List<Integer> path1 = path.subList(1, i);
+                List<Integer> path2 = path.subList(i, path.size());
+                pathResult.addAll(0, path2);
+                pathResult.addAll(path2.size(), path1);
+                break;
 
             }
         }
-        return path;
+        return pathResult;
     }
 
 }
